@@ -24,5 +24,6 @@ public class CameraIntentKey {
     public static final String VIDEO_PREFERRED_HEIGHT = "video_preferred_height";
     public static final String VIDEO_PREFERRED_ASPECT = "video_preferred_aspect";
     public static final String STILL_SHOT = "still_shot";
+    public static final String SHOW_PREVIEW = "show_preview";
 
 }

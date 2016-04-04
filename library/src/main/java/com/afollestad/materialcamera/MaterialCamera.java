@@ -42,6 +42,7 @@ public class MaterialCamera {
     private boolean mContinueTimerInPlayback = true;
     private boolean mForceCamera1 = false;
     private boolean mStillShot;
+    private boolean mShowPreviewOnCapture = true;
 
 
     private int mVideoBitRate = -1;
@@ -192,6 +193,10 @@ public class MaterialCamera {
         return this;
     }
 
+    public MaterialCamera showPreviewOnStillCapture(boolean showPreview){
+        mShowPreviewOnCapture = showPreview;
+        return this;
+    }
 
     public Intent getIntent() {
         final Class<?> cls = !mStillShot && !mForceCamera1 && CameraUtil.hasCamera2(mContext) ?
@@ -208,7 +213,8 @@ public class MaterialCamera {
                 .putExtra(CameraIntentKey.RETRY_EXITS, mRetryExists)
                 .putExtra(CameraIntentKey.RESTART_TIMER_ON_RETRY, mRestartTimerOnRetry)
                 .putExtra(CameraIntentKey.CONTINUE_TIMER_IN_PLAYBACK, mContinueTimerInPlayback)
-                .putExtra(CameraIntentKey.STILL_SHOT, mStillShot);
+                .putExtra(CameraIntentKey.STILL_SHOT, mStillShot)
+                .putExtra(CameraIntentKey.SHOW_PREVIEW, mShowPreviewOnCapture);
 
         if (mVideoBitRate > 0)
             intent.putExtra(CameraIntentKey.VIDEO_BIT_RATE, mVideoBitRate);

@@ -311,11 +311,15 @@ public abstract class BaseCaptureActivity extends AppCompatActivity implements B
 
     @Override
     public void onShowStillshot(String outputUri) {
-        Fragment frag = StillshotPreviewFragment.newInstance(outputUri, allowRetry(),
-                getIntent().getIntExtra(CameraIntentKey.PRIMARY_COLOR, 0));
-        getFragmentManager().beginTransaction()
-                .replace(R.id.container, frag)
-                .commit();
+        if(getIntent().getBooleanExtra(CameraIntentKey.SHOW_PREVIEW, true)){
+            Fragment frag = StillshotPreviewFragment.newInstance(outputUri, allowRetry(),
+                    getIntent().getIntExtra(CameraIntentKey.PRIMARY_COLOR, 0));
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.container, frag)
+                    .commit();
+        }else{
+            useVideo(outputUri);
+        }
     }
 
     @Override
